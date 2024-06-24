@@ -195,8 +195,8 @@
             </div>
             <button type="button" onclick="calculateResult()">Submit</button>
             <div id="result"></div>
-            <div class="consultation-button" id="consultationButton">
-                <a href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
+            <div class="consultation-button">
+                <a id="consultationLink" href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
             </div>
         </form>
     </div>
@@ -218,16 +218,19 @@
                 resultText = 'Moderate Substance Use Disorder';
             } else if (score >= 6) {
                 resultText = 'Severe Substance Use Disorder';
-                document.getElementById('consultationButton').style.display = 'block';
+                // Show the consultation button if it's a positive result
+                document.querySelector('.consultation-button').style.display = 'block';
             } else {
                 resultText = 'No Substance Use Disorder';
             }
 
+            // Display the result text
             const resultElement = document.getElementById('result');
-            resultElement.innerHTML = `<p class="result-text">Your result: ${resultText}</p>`;
+            resultElement.textContent = `Your result: ${resultText}`;
             resultElement.style.display = 'block';
 
-            form.querySelector('button').style.display = 'none';
+            // Hide the submit button after showing the result
+            document.querySelector('button[type="button"]').style.display = 'none';
         }
     </script>
 </body>
