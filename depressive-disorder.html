@@ -117,104 +117,29 @@
         <h1>Depressive Disorder Quiz</h1>
         <form id="ddQuiz">
             <div class="question">
-                <p>1. Do you feel sad or empty most of the day, nearly every day?</p>
+                <p>1. Have you experienced a depressed mood most of the day, nearly every day?</p>
                 <input type="radio" id="q1_yes" name="q1" value="yes">
                 <label for="q1_yes">Yes</label>
                 <input type="radio" id="q1_no" name="q1" value="no">
                 <label for="q1_no">No</label>
             </div>
             <div class="question">
-                <p>2. Have you lost interest or pleasure in most activities?</p>
+                <p>2. Have you experienced a marked loss of interest or pleasure in all, or almost all, activities most of the day, nearly every day?</p>
                 <input type="radio" id="q2_yes" name="q2" value="yes">
                 <label for="q2_yes">Yes</label>
                 <input type="radio" id="q2_no" name="q2" value="no">
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Do you experience significant weight loss or gain, or decrease or increase in appetite?</p>
+                <p>3. Have you experienced significant weight loss when not dieting, weight gain, or decrease or increase in appetite nearly every day?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Do you have trouble sleeping or sleep too much?</p>
+                <p>4. Have you experienced insomnia or hypersomnia nearly every day?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
-                <label for="q4_no">No</label>
-            </div>
-            <div class="question">
-                <p>5. Do you feel restless or slowed down?</p>
-                <input type="radio" id="q5_yes" name="q5" value="yes">
-                <label for="q5_yes">Yes</label>
-                <input type="radio" id="q5_no" name="q5" value="no">
-                <label for="q5_no">No</label>
-            </div>
-            <div class="question">
-                <p>6. Do you feel fatigued or have a loss of energy nearly every day?</p>
-                <input type="radio" id="q6_yes" name="q6" value="yes">
-                <label for="q6_yes">Yes</label>
-                <input type="radio" id="q6_no" name="q6" value="no">
-                <label for="q6_no">No</label>
-            </div>
-            <div class="question">
-                <p>7. Do you feel worthless or excessively guilty?</p>
-                <input type="radio" id="q7_yes" name="q7" value="yes">
-                <label for="q7_yes">Yes</label>
-                <input type="radio" id="q7_no" name="q7" value="no">
-                <label for="q7_no">No</label>
-            </div>
-            <div class="question">
-                <p>8. Do you have trouble concentrating or making decisions?</p>
-                <input type="radio" id="q8_yes" name="q8" value="yes">
-                <label for="q8_yes">Yes</label>
-                <input type="radio" id="q8_no" name="q8" value="no">
-                <label for="q8_no">No</label>
-            </div>
-            <div class="question">
-                <p>9. Do you have thoughts of death or suicide?</p>
-                <input type="radio" id="q9_yes" name="q9" value="yes">
-                <label for="q9_yes">Yes</label>
-                <input type="radio" id="q9_no" name="q9" value="no">
-                <label for="q9_no">No</label>
-            </div>
-            <button type="button" onclick="calculateResult()">Submit</button>
-            <div id="result"></div>
-            <div class="consultation-button" id="consultationButton">
-                <a href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
-            </div>
-        </form>
-    </div>
-
-    <script>
-        function calculateResult() {
-            const form = document.forms['ddQuiz'];
-            let score = 0;
-            for (let i = 1; i <= 9; i++) {
-                if (form[`q${i}`].value === 'yes') {
-                    score++;
-                }
-            }
-
-            let resultText = '';
-            if (score >= 2 && score <= 4) {
-                resultText = 'Mild Depressive Disorder';
-            } else if (score >= 5 && score <= 6) {
-                resultText = 'Moderate Depressive Disorder';
-            } else if (score >= 7) {
-                resultText = 'Severe Depressive Disorder';
-                document.getElementById('consultationButton').style.display = 'block';
-            } else {
-                resultText = 'No Depressive Disorder';
-            }
-
-            const resultElement = document.getElementById('result');
-            resultElement.innerHTML = `<p class="result-text">Your result: ${resultText}</p>`;
-            resultElement.style.display = 'block';
-
-            form.querySelector('button').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+                <
