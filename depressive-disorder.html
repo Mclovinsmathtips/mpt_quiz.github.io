@@ -110,6 +110,19 @@
         .consultation-button a:hover {
             background-color: #576f75;
         }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6a8590;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #576f75;
+        }
     </style>
 </head>
 <body>
@@ -117,102 +130,98 @@
         <h1>Depressive Disorder Quiz</h1>
         <form id="ddQuiz">
             <div class="question">
-                <p>1. Have you experienced a depressed mood most of the day, nearly every day?</p>
+                <p>1. Have you been feeling down, depressed, or hopeless?</p>
                 <input type="radio" id="q1_yes" name="q1" value="yes">
                 <label for="q1_yes">Yes</label>
                 <input type="radio" id="q1_no" name="q1" value="no">
                 <label for="q1_no">No</label>
             </div>
             <div class="question">
-                <p>2. Have you lost interest or pleasure in activities that you used to enjoy?</p>
+                <p>2. Have you lost interest or pleasure in doing things?</p>
                 <input type="radio" id="q2_yes" name="q2" value="yes">
                 <label for="q2_yes">Yes</label>
                 <input type="radio" id="q2_no" name="q2" value="no">
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Have you experienced significant weight loss or weight gain?</p>
+                <p>3. Have you had trouble falling or staying asleep, or sleeping too much?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Have you experienced insomnia or hypersomnia nearly every day?</p>
+                <p>4. Have you been feeling tired or having little energy?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
                 <label for="q4_no">No</label>
             </div>
             <div class="question">
-                <p>5. Have you experienced psychomotor agitation or retardation nearly every day?</p>
+                <p>5. Have you had a poor appetite or been overeating?</p>
                 <input type="radio" id="q5_yes" name="q5" value="yes">
                 <label for="q5_yes">Yes</label>
                 <input type="radio" id="q5_no" name="q5" value="no">
                 <label for="q5_no">No</label>
             </div>
             <div class="question">
-                <p>6. Have you experienced fatigue or loss of energy nearly every day?</p>
+                <p>6. Have you been feeling bad about yourself - or that you are a failure or have let yourself or your family down?</p>
                 <input type="radio" id="q6_yes" name="q6" value="yes">
                 <label for="q6_yes">Yes</label>
                 <input type="radio" id="q6_no" name="q6" value="no">
                 <label for="q6_no">No</label>
             </div>
             <div class="question">
-                <p>7. Have you experienced feelings of worthlessness or excessive guilt nearly every day?</p>
+                <p>7. Have you had trouble concentrating on things, such as reading the newspaper or watching television?</p>
                 <input type="radio" id="q7_yes" name="q7" value="yes">
                 <label for="q7_yes">Yes</label>
                 <input type="radio" id="q7_no" name="q7" value="no">
                 <label for="q7_no">No</label>
             </div>
             <div class="question">
-                <p>8. Have you experienced diminished ability to think or concentrate, or indecisiveness, nearly every day?</p>
+                <p>8. Have you been moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?</p>
                 <input type="radio" id="q8_yes" name="q8" value="yes">
                 <label for="q8_yes">Yes</label>
                 <input type="radio" id="q8_no" name="q8" value="no">
                 <label for="q8_no">No</label>
             </div>
             <div class="question">
-                <p>9. Have you experienced recurrent thoughts of death, recurrent suicidal ideation without a specific plan, or a suicide attempt or a specific plan for committing suicide?</p>
+                <p>9. Have you had thoughts that you would be better off dead, or thoughts of hurting yourself in some way?</p>
                 <input type="radio" id="q9_yes" name="q9" value="yes">
                 <label for="q9_yes">Yes</label>
                 <input type="radio" id="q9_no" name="q9" value="no">
                 <label for="q9_no">No</label>
             </div>
             <button type="button" onclick="calculateResult()">Submit</button>
-            <div id="result"></div>
-            <div class="consultation-button">
-                <a id="consultationLink" href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
-            </div>
         </form>
+        <div id="result"></div>
+        <div class="consultation-button">
+            <a href="contact.html">Free Consultation</a>
+        </div>
+        <a href="index.html" class="back-button">Back to Homepage</a>
     </div>
-
     <script>
         function calculateResult() {
-            const form = document.forms['ddQuiz'];
+            const form = document.getElementById('ddQuiz');
+            const resultDiv = document.getElementById('result');
+            const consultationButton = document.querySelector('.consultation-button');
             let score = 0;
+
             for (let i = 1; i <= 9; i++) {
-                if (form[`q${i}`].value === 'yes') {
+                const yesOption = document.getElementById(`q${i}_yes`);
+                if (yesOption.checked) {
                     score++;
                 }
             }
 
-            let resultText = '';
+            resultDiv.style.display = 'block';
             if (score >= 5) {
-                resultText = 'Likely Depressive Disorder';
-                // Show the consultation button if it's a positive result
-                document.querySelector('.consultation-button').style.display = 'block';
+                resultDiv.innerText = `Your score is ${score}. This indicates a potential depressive disorder.`;
+                consultationButton.style.display = 'block';
             } else {
-                resultText = 'No Depressive Disorder Detected';
+                resultDiv.innerText = `Your score is ${score}. This does not indicate a depressive disorder.`;
+                consultationButton.style.display = 'none';
             }
-
-            // Display the result text
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = `Your result: ${resultText}`;
-            resultElement.style.display = 'block';
-
-            // Hide the submit button after showing the result
-            document.querySelector('button[type="button"]').style.display = 'none';
         }
     </script>
 </body>
