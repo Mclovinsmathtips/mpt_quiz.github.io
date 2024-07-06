@@ -110,6 +110,19 @@
         .consultation-button a:hover {
             background-color: #576f75;
         }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6a8590;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #576f75;
+        }
     </style>
 </head>
 <body>
@@ -194,43 +207,35 @@
                 <label for="q11_no">No</label>
             </div>
             <button type="button" onclick="calculateResult()">Submit</button>
-            <div id="result"></div>
-            <div class="consultation-button">
-                <a id="consultationLink" href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
-            </div>
         </form>
+        <div id="result"></div>
+        <div class="consultation-button">
+            <a href="contact.html">Free Consultation</a>
+        </div>
+        <a href="index.html" class="back-button">Back to Homepage</a>
     </div>
-
     <script>
         function calculateResult() {
-            const form = document.forms['sudQuiz'];
+            const form = document.getElementById('sudQuiz');
+            const resultDiv = document.getElementById('result');
+            const consultationButton = document.querySelector('.consultation-button');
             let score = 0;
+
             for (let i = 1; i <= 11; i++) {
-                if (form[`q${i}`].value === 'yes') {
+                const yesOption = document.getElementById(`q${i}_yes`);
+                if (yesOption.checked) {
                     score++;
                 }
             }
 
-            let resultText = '';
-            if (score >= 2 && score <= 3) {
-                resultText = 'Mild Substance Use Disorder';
-            } else if (score >= 4 && score <= 5) {
-                resultText = 'Moderate Substance Use Disorder';
-            } else if (score >= 6) {
-                resultText = 'Severe Substance Use Disorder';
-                // Show the consultation button if it's a positive result
-                document.querySelector('.consultation-button').style.display = 'block';
+            resultDiv.style.display = 'block';
+            if (score >= 2) {
+                resultDiv.innerText = `Your score is ${score}. This indicates a potential substance use disorder.`;
+                consultationButton.style.display = 'block';
             } else {
-                resultText = 'No Substance Use Disorder';
+                resultDiv.innerText = `Your score is ${score}. This does not indicate a substance use disorder.`;
+                consultationButton.style.display = 'none';
             }
-
-            // Display the result text
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = `Your result: ${resultText}`;
-            resultElement.style.display = 'block';
-
-            // Hide the submit button after showing the result
-            document.querySelector('button[type="button"]').style.display = 'none';
         }
     </script>
 </body>
