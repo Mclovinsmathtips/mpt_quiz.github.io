@@ -119,6 +119,7 @@
             border-radius: 5px;
             text-align: center;
             margin-top: 20px;
+            transition: background-color 0.3s;
         }
         .back-button:hover {
             background-color: #576f75;
@@ -128,9 +129,9 @@
 <body>
     <div class="container">
         <h1>Depressive Disorder Quiz</h1>
-        <form id="ddQuiz">
+        <form id="depressiveDisorderQuiz">
             <div class="question">
-                <p>1. Have you been feeling down, depressed, or hopeless for most of the day, nearly every day?</p>
+                <p>1. Do you feel sad, empty, or hopeless most of the day, nearly every day?</p>
                 <input type="radio" id="q1_yes" name="q1" value="yes">
                 <label for="q1_yes">Yes</label>
                 <input type="radio" id="q1_no" name="q1" value="no">
@@ -144,49 +145,49 @@
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Have you experienced significant weight loss or gain, or changes in appetite?</p>
+                <p>3. Do you have significant weight loss or gain, or a decrease or increase in appetite?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Have you had trouble sleeping (insomnia) or been sleeping too much (hypersomnia)?</p>
+                <p>4. Do you experience insomnia or hypersomnia nearly every day?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
                 <label for="q4_no">No</label>
             </div>
             <div class="question">
-                <p>5. Have you felt physically agitated or slowed down?</p>
+                <p>5. Do you feel physically restless or slowed down?</p>
                 <input type="radio" id="q5_yes" name="q5" value="yes">
                 <label for="q5_yes">Yes</label>
                 <input type="radio" id="q5_no" name="q5" value="no">
                 <label for="q5_no">No</label>
             </div>
             <div class="question">
-                <p>6. Have you felt fatigued or had a lack of energy?</p>
+                <p>6. Do you feel fatigue or loss of energy nearly every day?</p>
                 <input type="radio" id="q6_yes" name="q6" value="yes">
                 <label for="q6_yes">Yes</label>
                 <input type="radio" id="q6_no" name="q6" value="no">
                 <label for="q6_no">No</label>
             </div>
             <div class="question">
-                <p>7. Have you had feelings of worthlessness or excessive guilt?</p>
+                <p>7. Do you feel worthless or excessively guilty?</p>
                 <input type="radio" id="q7_yes" name="q7" value="yes">
                 <label for="q7_yes">Yes</label>
                 <input type="radio" id="q7_no" name="q7" value="no">
                 <label for="q7_no">No</label>
             </div>
             <div class="question">
-                <p>8. Have you had difficulty concentrating or making decisions?</p>
+                <p>8. Do you have difficulty concentrating or making decisions?</p>
                 <input type="radio" id="q8_yes" name="q8" value="yes">
                 <label for="q8_yes">Yes</label>
                 <input type="radio" id="q8_no" name="q8" value="no">
                 <label for="q8_no">No</label>
             </div>
             <div class="question">
-                <p>9. Have you had recurrent thoughts of death or suicide?</p>
+                <p>9. Do you have thoughts of death or suicide?</p>
                 <input type="radio" id="q9_yes" name="q9" value="yes">
                 <label for="q9_yes">Yes</label>
                 <input type="radio" id="q9_no" name="q9" value="no">
@@ -196,30 +197,29 @@
         </form>
         <div id="result"></div>
         <div class="consultation-button">
-            <a href="https://menachempsychotherapygroup.com/free-consultation/">Free Consultation</a>
+            <a href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Free Consultation</a>
         </div>
         <a href="index.html" class="back-button">Back to Homepage</a>
     </div>
     <script>
         function calculateResult() {
-            const form = document.getElementById('ddQuiz');
-            const resultDiv = document.getElementById('result');
-            const consultationButton = document.querySelector('.consultation-button');
             let score = 0;
-
-            for (let i = 1; i <= 9; i++) {
-                const yesOption = document.getElementById(`q${i}_yes`);
-                if (yesOption.checked) {
+            const form = document.getElementById('depressiveDisorderQuiz');
+            const questions = form.querySelectorAll('.question');
+            questions.forEach(question => {
+                const yesInput = question.querySelector('input[value="yes"]');
+                if (yesInput.checked) {
                     score++;
                 }
-            }
-
+            });
+            const resultDiv = document.getElementById('result');
+            const consultationButton = document.querySelector('.consultation-button');
             resultDiv.style.display = 'block';
-            if (score >= 5) {
-                resultDiv.innerText = 'Based on your answers, you may have a depressive disorder. Please seek professional help for an accurate diagnosis and appropriate treatment.';
+            if (score >= 2) {
+                resultDiv.innerHTML = "Based on your answers, you may have a depressive disorder. Please seek professional help for a comprehensive diagnosis.";
                 consultationButton.style.display = 'block';
             } else {
-                resultDiv.innerText = 'Based on your answers, it is unlikely that you have a depressive disorder. However, if you have concerns, consider seeking professional advice.';
+                resultDiv.innerHTML = "Based on your answers, you are unlikely to have a depressive disorder. However, if you have concerns, please consult a professional.";
                 consultationButton.style.display = 'none';
             }
         }
