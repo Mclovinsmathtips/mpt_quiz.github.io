@@ -119,6 +119,7 @@
             border-radius: 5px;
             text-align: center;
             margin-top: 20px;
+            transition: background-color 0.3s;
         }
         .back-button:hover {
             background-color: #576f75;
@@ -128,79 +129,79 @@
 <body>
     <div class="container">
         <h1>Substance Use Disorder Quiz</h1>
-        <form id="sudQuiz">
+        <form id="substanceUseQuiz">
             <div class="question">
-                <p>1. Have you been using larger amounts of the substance over time?</p>
+                <p>1. Do you often use larger amounts or over a longer period than intended?</p>
                 <input type="radio" id="q1_yes" name="q1" value="yes">
                 <label for="q1_yes">Yes</label>
                 <input type="radio" id="q1_no" name="q1" value="no">
                 <label for="q1_no">No</label>
             </div>
             <div class="question">
-                <p>2. Do you find yourself unable to cut down or control your use of the substance?</p>
+                <p>2. Have you wanted to cut down or stop using, but couldn't?</p>
                 <input type="radio" id="q2_yes" name="q2" value="yes">
                 <label for="q2_yes">Yes</label>
                 <input type="radio" id="q2_no" name="q2" value="no">
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Do you spend a lot of time getting, using, or recovering from the substance?</p>
+                <p>3. Do you spend a lot of time getting, using, or recovering from use?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Do you experience cravings for the substance?</p>
+                <p>4. Do you have cravings and urges to use?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
                 <label for="q4_no">No</label>
             </div>
             <div class="question">
-                <p>5. Have you failed to fulfill major obligations at work, school, or home due to substance use?</p>
+                <p>5. Do you often fail to fulfill major obligations at work, school, or home due to use?</p>
                 <input type="radio" id="q5_yes" name="q5" value="yes">
                 <label for="q5_yes">Yes</label>
                 <input type="radio" id="q5_no" name="q5" value="no">
                 <label for="q5_no">No</label>
             </div>
             <div class="question">
-                <p>6. Have you continued to use the substance despite having persistent social or interpersonal problems?</p>
+                <p>6. Do you continue to use, even when it causes problems in relationships?</p>
                 <input type="radio" id="q6_yes" name="q6" value="yes">
                 <label for="q6_yes">Yes</label>
                 <input type="radio" id="q6_no" name="q6" value="no">
                 <label for="q6_no">No</label>
             </div>
             <div class="question">
-                <p>7. Have you given up or reduced important social, occupational, or recreational activities due to substance use?</p>
+                <p>7. Do you give up important social, occupational, or recreational activities because of use?</p>
                 <input type="radio" id="q7_yes" name="q7" value="yes">
                 <label for="q7_yes">Yes</label>
                 <input type="radio" id="q7_no" name="q7" value="no">
                 <label for="q7_no">No</label>
             </div>
             <div class="question">
-                <p>8. Have you used the substance in situations where it is physically hazardous?</p>
+                <p>8. Do you use again and again, even when it puts you in danger?</p>
                 <input type="radio" id="q8_yes" name="q8" value="yes">
                 <label for="q8_yes">Yes</label>
                 <input type="radio" id="q8_no" name="q8" value="no">
                 <label for="q8_no">No</label>
             </div>
             <div class="question">
-                <p>9. Have you continued to use the substance despite knowing you have a physical or psychological problem that is likely caused or worsened by the substance?</p>
+                <p>9. Do you continue to use, even when you know you have a physical or psychological problem that could have been caused or made worse by use?</p>
                 <input type="radio" id="q9_yes" name="q9" value="yes">
                 <label for="q9_yes">Yes</label>
                 <input type="radio" id="q9_no" name="q9" value="no">
                 <label for="q9_no">No</label>
             </div>
             <div class="question">
-                <p>10. Have you developed a tolerance to the substance (needing more to achieve the same effect)?</p>
+                <p>10. Do you need more of the substance to get the effect you want (tolerance)?</p>
                 <input type="radio" id="q10_yes" name="q10" value="yes">
                 <label for="q10_yes">Yes</label>
                 <input type="radio" id="q10_no" name="q10" value="no">
                 <label for="q10_no">No</label>
             </div>
             <div class="question">
-                <p>11. Do you experience withdrawal symptoms when you don't use the substance?</p>
+                <p>11. Do you experience withdrawal symptoms, which can be relieved by using more of the substance?</p>
                 <input type="radio" id="q11_yes" name="q11" value="yes">
                 <label for="q11_yes">Yes</label>
                 <input type="radio" id="q11_no" name="q11" value="no">
@@ -210,30 +211,29 @@
         </form>
         <div id="result"></div>
         <div class="consultation-button">
-            <a href="contact.html">Free Consultation</a>
+            <a href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Free Consultation</a>
         </div>
         <a href="index.html" class="back-button">Back to Homepage</a>
     </div>
     <script>
         function calculateResult() {
-            const form = document.getElementById('sudQuiz');
-            const resultDiv = document.getElementById('result');
-            const consultationButton = document.querySelector('.consultation-button');
             let score = 0;
-
-            for (let i = 1; i <= 11; i++) {
-                const yesOption = document.getElementById(`q${i}_yes`);
-                if (yesOption.checked) {
+            const form = document.getElementById('substanceUseQuiz');
+            const questions = form.querySelectorAll('.question');
+            questions.forEach(question => {
+                const yesInput = question.querySelector('input[value="yes"]');
+                if (yesInput.checked) {
                     score++;
                 }
-            }
-
+            });
+            const resultDiv = document.getElementById('result');
+            const consultationButton = document.querySelector('.consultation-button');
             resultDiv.style.display = 'block';
             if (score >= 2) {
-                resultDiv.innerText = 'Based on your answers, you may have a substance use disorder. Please seek professional help for an accurate diagnosis and appropriate treatment.';
+                resultDiv.innerHTML = "Based on your answers, you may have a substance use disorder. Please seek professional help for a comprehensive diagnosis.";
                 consultationButton.style.display = 'block';
             } else {
-                resultDiv.innerText = 'Based on your answers, it is unlikely that you have a substance use disorder. However, if you have concerns, consider seeking professional advice.';
+                resultDiv.innerHTML = "Based on your answers, you are unlikely to have a substance use disorder. However, if you have concerns, please consult a professional.";
                 consultationButton.style.display = 'none';
             }
         }
