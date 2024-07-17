@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antisocial Personality Disorder Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #6a8590;
+            font-size: 2em;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-size: 1.1em;
+            color: #555555;
+        }
+        .question label {
+            margin-right: 10px;
+            font-size: 1em;
+            color: #333333;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .question input[type="radio"] {
+            display: none;
+        }
+        .question label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border: 2px solid #6a8590;
+            border-radius: 50%;
+            vertical-align: middle;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .question input[type="radio"]:checked + label::before {
+            background-color: #6a8590;
+            border-color: #6a8590;
+        }
+        .question label:hover::before {
+            background-color: #6a8590;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #6a8590;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #576f75;
+        }
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fdfdfd;
+            border: 2px solid #6a8590;
+            text-align: center;
+            font-size: 1.4em;
+            color: #333333;
+            display: none;
+        }
+        .consultation-button {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .consultation-button a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #6a8590;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .consultation-button a:hover {
+            background-color: #576f75;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6a8590;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #576f75;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Antisocial Personality Disorder Quiz</h1>
+        <form id="aspdQuiz">
+            <div class="question">
+                <p>1. Do you repeatedly break the law or violate the rights of others?</p>
+                <input type="radio" id="q1_yes" name="q1" value="yes">
+                <label for="q1_yes">Yes</label>
+                <input type="radio" id="q1_no" name="q1" value="no">
+                <label for="q1_no">No</label>
+            </div>
+            <div class="question">
+                <p>2. Do you frequently lie, deceive, or manipulate others for personal gain or pleasure?</p>
+                <input type="radio" id="q2_yes" name="q2" value="yes">
+                <label for="q2_yes">Yes</label>
+                <input type="radio" id="q2_no" name="q2" value="no">
+                <label for="q2_no">No</label>
+            </div>
+            <div class="question">
+                <p>3. Do you act impulsively or fail to plan ahead?</p>
+                <input type="radio" id="q3_yes" name="q3" value="yes">
+                <label for="q3_yes">Yes</label>
+                <input type="radio" id="q3_no" name="q3" value="no">
+                <label for="q3_no">No</label>
+            </div>
+            <div class="question">
+                <p>4. Do you tend to be irritable and aggressive, often getting into physical fights or assaults?</p>
+                <input type="radio" id="q4_yes" name="q4" value="yes">
+                <label for="q4_yes">Yes</label>
+                <input type="radio" id="q4_no" name="q4" value="no">
+                <label for="q4_no">No</label>
+            </div>
+            <div class="question">
+                <p>5. Do you consistently disregard the safety of yourself or others?</p>
+                <input type="radio" id="q5_yes" name="q5" value="yes">
+                <label for="q5_yes">Yes</label>
+                <input type="radio" id="q5_no" name="q5" value="no">
+                <label for="q5_no">No</label>
+            </div>
+            <div class="question">
+                <p>6. Do you show a lack of remorse after hurting, mistreating, or stealing from others?</p>
+                <input type="radio" id="q6_yes" name="q6" value="yes">
+                <label for="q6_yes">Yes</label>
+                <input type="radio" id="q6_no" name="q6" value="no">
+                <label for="q6_no">No</label>
+            </div>
+            <button type="button" onclick="calculateResult()">Submit</button>
+        </form>
+        <div id="result"></div>
+        <div class="consultation-button">
+            <a href="contact.html">Free Consultation</a>
+        </div>
+        <a href="index.html" class="back-button">Back to Homepage</a>
+    </div>
+    <script>
+        function calculateResult() {
+            const form = document.getElementById('aspdQuiz');
+            const resultDiv = document.getElementById('result');
+            const consultationButton = document.querySelector('.consultation-button');
+            let score = 0;
+
+            for (let i = 1; i <= 6; i++) {
+                const yesOption = document.getElementById(`q${i}_yes`);
+                if (yesOption.checked) {
+                    score++;
+                }
+            }
+
+            resultDiv.style.display = 'block';
+            if (score >= 3) {
+                resultDiv.innerText = 'Based on your answers, you may have Antisocial Personality Disorder. Please seek professional help for an accurate diagnosis and appropriate treatment.';
+                consultationButton.style.display = 'block';
+            } else {
+                resultDiv.innerText = 'Based on your answers, it is unlikely that you have Antisocial Personality Disorder. However, if you have concerns, consider seeking professional advice.';
+                consultationButton.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
