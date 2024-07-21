@@ -140,32 +140,46 @@
                 <label for="q1_no">No</label>
             </div>
             <div class="question">
-                <p>2. Do you often doubt the loyalty or trustworthiness of friends or associates?</p>
+                <p>2. Are you preoccupied with unjustified doubts about the loyalty or trustworthiness of friends or associates?</p>
                 <input type="radio" id="q2_yes" name="q2" value="yes">
                 <label for="q2_yes">Yes</label>
                 <input type="radio" id="q2_no" name="q2" value="no">
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Do you often read hidden demeaning or threatening meanings into benign remarks or events?</p>
+                <p>3. Are you reluctant to confide in others because of an unwarranted fear that the information will be used maliciously against you?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Are you reluctant to confide in others because of an unwarranted fear that the information will be used maliciously against you?</p>
+                <p>4. Do you often read hidden demeaning or threatening meanings into benign remarks or events?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
                 <label for="q4_no">No</label>
             </div>
             <div class="question">
-                <p>5. Do you often bear grudges and are unwilling to forgive insults, injuries, or slights?</p>
+                <p>5. Do you persistently bear grudges and are unwilling to forgive insults, injuries, or slights?</p>
                 <input type="radio" id="q5_yes" name="q5" value="yes">
                 <label for="q5_yes">Yes</label>
                 <input type="radio" id="q5_no" name="q5" value="no">
                 <label for="q5_no">No</label>
+            </div>
+            <div class="question">
+                <p>6. Do you often perceive attacks on your character or reputation that are not apparent to others and are quick to react angrily or to counterattack?</p>
+                <input type="radio" id="q6_yes" name="q6" value="yes">
+                <label for="q6_yes">Yes</label>
+                <input type="radio" id="q6_no" name="q6" value="no">
+                <label for="q6_no">No</label>
+            </div>
+            <div class="question">
+                <p>7. Do you have recurrent suspicions, without justification, regarding the fidelity of your spouse or sexual partner?</p>
+                <input type="radio" id="q7_yes" name="q7" value="yes">
+                <label for="q7_yes">Yes</label>
+                <input type="radio" id="q7_no" name="q7" value="no">
+                <label for="q7_no">No</label>
             </div>
             <button type="button" onclick="calculateResult()">Submit</button>
             <div id="result"></div>
@@ -180,30 +194,25 @@
 
     <script>
         function calculateResult() {
-            const form = document.forms['ppdQuiz'];
             let score = 0;
-            for (let i = 1; i <= 5; i++) {
-                if (form[`q${i}`].value === 'yes') {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                const yesInput = question.querySelector(`#q${index + 1}_yes`);
+                if (yesInput.checked) {
                     score++;
                 }
-            }
+            });
 
-            let resultText = '';
-            if (score >= 3) {
-                resultText = 'You may have Paranoid Personality Disorder. Consider seeking professional advice.';
-                // Show the consultation button if it's a positive result
-                document.querySelector('.consultation-button').style.display = 'block';
+            const resultDiv = document.getElementById('result');
+            const consultationButton = document.querySelector('.consultation-button');
+            if (score >= 4) {
+                resultDiv.textContent = "Your responses indicate a likelihood of Paranoid Personality Disorder. Please seek professional evaluation.";
+                consultationButton.style.display = 'block';
             } else {
-                resultText = 'You are unlikely to have Paranoid Personality Disorder.';
+                resultDiv.textContent = "Your responses do not indicate a likelihood of Paranoid Personality Disorder.";
+                consultationButton.style.display = 'none';
             }
-
-            // Display the result text
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = `Your result: ${resultText}`;
-            resultElement.style.display = 'block';
-
-            // Hide the submit button after showing the result
-            document.querySelector('button[type="button"]').style.display = 'none';
+            resultDiv.style.display = 'block';
         }
     </script>
 </body>
