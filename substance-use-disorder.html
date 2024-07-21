@@ -110,18 +110,20 @@
         .consultation-button a:hover {
             background-color: #576f75;
         }
-        .back-button {
+        .home-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .home-button a {
             display: inline-block;
             padding: 10px 20px;
             background-color: #6a8590;
             color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
-            text-align: center;
-            margin-top: 20px;
             transition: background-color 0.3s;
         }
-        .back-button:hover {
+        .home-button a:hover {
             background-color: #576f75;
         }
     </style>
@@ -129,113 +131,102 @@
 <body>
     <div class="container">
         <h1>Substance Use Disorder Quiz</h1>
-        <form id="substanceUseQuiz">
+        <form id="sudQuiz">
             <div class="question">
-                <p>1. Do you often use larger amounts or over a longer period than intended?</p>
+                <p>1. Have you taken the substance in larger amounts or over a longer period than intended?</p>
                 <input type="radio" id="q1_yes" name="q1" value="yes">
                 <label for="q1_yes">Yes</label>
                 <input type="radio" id="q1_no" name="q1" value="no">
                 <label for="q1_no">No</label>
             </div>
             <div class="question">
-                <p>2. Have you wanted to cut down or stop using, but couldn't?</p>
+                <p>2. Do you want to cut down or control your substance use but have been unsuccessful?</p>
                 <input type="radio" id="q2_yes" name="q2" value="yes">
                 <label for="q2_yes">Yes</label>
                 <input type="radio" id="q2_no" name="q2" value="no">
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Do you spend a lot of time getting, using, or recovering from use?</p>
+                <p>3. Do you spend a lot of time obtaining, using, or recovering from the substance?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Do you have cravings and urges to use?</p>
+                <p>4. Do you experience strong cravings or a strong desire to use the substance?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
                 <label for="q4_no">No</label>
             </div>
             <div class="question">
-                <p>5. Do you often fail to fulfill major obligations at work, school, or home due to use?</p>
+                <p>5. Has your substance use caused you to fail to fulfill major role obligations at work, school, or home?</p>
                 <input type="radio" id="q5_yes" name="q5" value="yes">
                 <label for="q5_yes">Yes</label>
                 <input type="radio" id="q5_no" name="q5" value="no">
                 <label for="q5_no">No</label>
             </div>
             <div class="question">
-                <p>6. Do you continue to use, even when it causes problems in relationships?</p>
+                <p>6. Have you continued to use the substance despite having persistent or recurrent social or interpersonal problems caused or exacerbated by the effects of the substance?</p>
                 <input type="radio" id="q6_yes" name="q6" value="yes">
                 <label for="q6_yes">Yes</label>
                 <input type="radio" id="q6_no" name="q6" value="no">
                 <label for="q6_no">No</label>
             </div>
             <div class="question">
-                <p>7. Do you give up important social, occupational, or recreational activities because of use?</p>
+                <p>7. Have you given up or reduced important social, occupational, or recreational activities because of substance use?</p>
                 <input type="radio" id="q7_yes" name="q7" value="yes">
                 <label for="q7_yes">Yes</label>
                 <input type="radio" id="q7_no" name="q7" value="no">
                 <label for="q7_no">No</label>
             </div>
             <div class="question">
-                <p>8. Do you use again and again, even when it puts you in danger?</p>
+                <p>8. Have you engaged in recurrent substance use in situations where it is physically hazardous?</p>
                 <input type="radio" id="q8_yes" name="q8" value="yes">
                 <label for="q8_yes">Yes</label>
                 <input type="radio" id="q8_no" name="q8" value="no">
                 <label for="q8_no">No</label>
             </div>
             <div class="question">
-                <p>9. Do you continue to use, even when you know you have a physical or psychological problem that could have been caused or made worse by use?</p>
+                <p>9. Have you continued to use the substance despite knowledge of having a persistent or recurrent physical or psychological problem that is likely to have been caused or exacerbated by the substance?</p>
                 <input type="radio" id="q9_yes" name="q9" value="yes">
                 <label for="q9_yes">Yes</label>
                 <input type="radio" id="q9_no" name="q9" value="no">
                 <label for="q9_no">No</label>
             </div>
-            <div class="question">
-                <p>10. Do you need more of the substance to get the effect you want (tolerance)?</p>
-                <input type="radio" id="q10_yes" name="q10" value="yes">
-                <label for="q10_yes">Yes</label>
-                <input type="radio" id="q10_no" name="q10" value="no">
-                <label for="q10_no">No</label>
-            </div>
-            <div class="question">
-                <p>11. Do you experience withdrawal symptoms, which can be relieved by using more of the substance?</p>
-                <input type="radio" id="q11_yes" name="q11" value="yes">
-                <label for="q11_yes">Yes</label>
-                <input type="radio" id="q11_no" name="q11" value="no">
-                <label for="q11_no">No</label>
-            </div>
             <button type="button" onclick="calculateResult()">Submit</button>
+            <div id="result"></div>
+            <div class="consultation-button">
+                <a id="consultationLink" href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
+            </div>
         </form>
-        <div id="result"></div>
-        <div class="consultation-button">
-            <a href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Free Consultation</a>
+        <div class="home-button">
+            <a href="index.html">Back to Homepage</a>
         </div>
-        <a href="index.html" class="back-button">Back to Homepage</a>
     </div>
+
     <script>
         function calculateResult() {
             let score = 0;
-            const form = document.getElementById('substanceUseQuiz');
-            const questions = form.querySelectorAll('.question');
-            questions.forEach(question => {
-                const yesInput = question.querySelector('input[value="yes"]');
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                const yesInput = question.querySelector(`#q${index + 1}_yes`);
                 if (yesInput.checked) {
                     score++;
                 }
             });
+
             const resultDiv = document.getElementById('result');
             const consultationButton = document.querySelector('.consultation-button');
-            resultDiv.style.display = 'block';
-            if (score >= 2) {
-                resultDiv.innerHTML = "Based on your answers, you may have a substance use disorder. Please seek professional help for a comprehensive diagnosis.";
+            if (score >= 4) {
+                resultDiv.textContent = "Your responses suggest that you may have a substance use disorder. Please seek professional evaluation.";
                 consultationButton.style.display = 'block';
             } else {
-                resultDiv.innerHTML = "Based on your answers, you are unlikely to have a substance use disorder. However, if you have concerns, please consult a professional.";
+                resultDiv.textContent = "Your responses do not suggest a substance use disorder.";
                 consultationButton.style.display = 'none';
             }
+            resultDiv.style.display = 'block';
         }
     </script>
 </body>
