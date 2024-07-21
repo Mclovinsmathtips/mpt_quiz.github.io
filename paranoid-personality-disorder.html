@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paranoid Personality Disorder Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #6a8590;
+            font-size: 2em;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-size: 1.1em;
+            color: #555555;
+        }
+        .question label {
+            margin-right: 10px;
+            font-size: 1em;
+            color: #333333;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .question input[type="radio"] {
+            display: none;
+        }
+        .question label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border: 2px solid #6a8590;
+            border-radius: 50%;
+            vertical-align: middle;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .question input[type="radio"]:checked + label::before {
+            background-color: #6a8590;
+            border-color: #6a8590;
+        }
+        .question label:hover::before {
+            background-color: #6a8590;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #6a8590;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #576f75;
+        }
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fdfdfd;
+            border: 2px solid #6a8590;
+            text-align: center;
+            font-size: 1.4em;
+            color: #333333;
+            display: none;
+        }
+        .consultation-button {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .consultation-button a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #6a8590;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .consultation-button a:hover {
+            background-color: #576f75;
+        }
+        .home-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .home-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6a8590;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .home-button a:hover {
+            background-color: #576f75;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Paranoid Personality Disorder Quiz</h1>
+        <form id="ppdQuiz">
+            <div class="question">
+                <p>1. Do you often suspect, without sufficient basis, that others are exploiting, harming, or deceiving you?</p>
+                <input type="radio" id="q1_yes" name="q1" value="yes">
+                <label for="q1_yes">Yes</label>
+                <input type="radio" id="q1_no" name="q1" value="no">
+                <label for="q1_no">No</label>
+            </div>
+            <div class="question">
+                <p>2. Do you often doubt the loyalty or trustworthiness of friends or associates?</p>
+                <input type="radio" id="q2_yes" name="q2" value="yes">
+                <label for="q2_yes">Yes</label>
+                <input type="radio" id="q2_no" name="q2" value="no">
+                <label for="q2_no">No</label>
+            </div>
+            <div class="question">
+                <p>3. Do you often read hidden demeaning or threatening meanings into benign remarks or events?</p>
+                <input type="radio" id="q3_yes" name="q3" value="yes">
+                <label for="q3_yes">Yes</label>
+                <input type="radio" id="q3_no" name="q3" value="no">
+                <label for="q3_no">No</label>
+            </div>
+            <div class="question">
+                <p>4. Are you reluctant to confide in others because of an unwarranted fear that the information will be used maliciously against you?</p>
+                <input type="radio" id="q4_yes" name="q4" value="yes">
+                <label for="q4_yes">Yes</label>
+                <input type="radio" id="q4_no" name="q4" value="no">
+                <label for="q4_no">No</label>
+            </div>
+            <div class="question">
+                <p>5. Do you often bear grudges and are unwilling to forgive insults, injuries, or slights?</p>
+                <input type="radio" id="q5_yes" name="q5" value="yes">
+                <label for="q5_yes">Yes</label>
+                <input type="radio" id="q5_no" name="q5" value="no">
+                <label for="q5_no">No</label>
+            </div>
+            <button type="button" onclick="calculateResult()">Submit</button>
+            <div id="result"></div>
+            <div class="consultation-button">
+                <a id="consultationLink" href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
+            </div>
+        </form>
+        <div class="home-button">
+            <a href="index.html">Back to Homepage</a>
+        </div>
+    </div>
+
+    <script>
+        function calculateResult() {
+            const form = document.forms['ppdQuiz'];
+            let score = 0;
+            for (let i = 1; i <= 5; i++) {
+                if (form[`q${i}`].value === 'yes') {
+                    score++;
+                }
+            }
+
+            let resultText = '';
+            if (score >= 3) {
+                resultText = 'You may have Paranoid Personality Disorder. Consider seeking professional advice.';
+                // Show the consultation button if it's a positive result
+                document.querySelector('.consultation-button').style.display = 'block';
+            } else {
+                resultText = 'You are unlikely to have Paranoid Personality Disorder.';
+            }
+
+            // Display the result text
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `Your result: ${resultText}`;
+            resultElement.style.display = 'block';
+
+            // Hide the submit button after showing the result
+            document.querySelector('button[type="button"]').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
