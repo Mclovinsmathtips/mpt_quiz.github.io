@@ -110,18 +110,20 @@
         .consultation-button a:hover {
             background-color: #576f75;
         }
-        .back-button {
+        .home-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .home-button a {
             display: inline-block;
             padding: 10px 20px;
             background-color: #6a8590;
             color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
-            text-align: center;
-            margin-top: 20px;
             transition: background-color 0.3s;
         }
-        .back-button:hover {
+        .home-button a:hover {
             background-color: #576f75;
         }
     </style>
@@ -129,99 +131,95 @@
 <body>
     <div class="container">
         <h1>Borderline Personality Disorder Quiz</h1>
-        <form id="borderlinePersonalityQuiz">
+        <form id="bpdQuiz">
             <div class="question">
-                <p>1. Do you have intense and unstable relationships with others?</p>
+                <p>1. Do you have a pattern of unstable and intense interpersonal relationships?</p>
                 <input type="radio" id="q1_yes" name="q1" value="yes">
                 <label for="q1_yes">Yes</label>
                 <input type="radio" id="q1_no" name="q1" value="no">
                 <label for="q1_no">No</label>
             </div>
             <div class="question">
-                <p>2. Do you experience frequent mood swings?</p>
+                <p>2. Do you have a pattern of unstable self-image or sense of self?</p>
                 <input type="radio" id="q2_yes" name="q2" value="yes">
                 <label for="q2_yes">Yes</label>
                 <input type="radio" id="q2_no" name="q2" value="no">
                 <label for="q2_no">No</label>
             </div>
             <div class="question">
-                <p>3. Do you often feel empty or bored?</p>
+                <p>3. Do you have a pattern of impulsivity in at least two areas that are potentially self-damaging?</p>
                 <input type="radio" id="q3_yes" name="q3" value="yes">
                 <label for="q3_yes">Yes</label>
                 <input type="radio" id="q3_no" name="q3" value="no">
                 <label for="q3_no">No</label>
             </div>
             <div class="question">
-                <p>4. Do you have difficulty controlling anger?</p>
+                <p>4. Do you have recurrent suicidal behavior, gestures, or threats, or self-mutilating behavior?</p>
                 <input type="radio" id="q4_yes" name="q4" value="yes">
                 <label for="q4_yes">Yes</label>
                 <input type="radio" id="q4_no" name="q4" value="no">
                 <label for="q4_no">No</label>
             </div>
             <div class="question">
-                <p>5. Do you engage in impulsive behaviors such as spending, sex, substance abuse, reckless driving, or binge eating?</p>
+                <p>5. Do you experience emotional instability due to marked reactivity of mood?</p>
                 <input type="radio" id="q5_yes" name="q5" value="yes">
                 <label for="q5_yes">Yes</label>
                 <input type="radio" id="q5_no" name="q5" value="no">
                 <label for="q5_no">No</label>
             </div>
             <div class="question">
-                <p>6. Do you have a distorted or unstable self-image?</p>
+                <p>6. Do you experience chronic feelings of emptiness?</p>
                 <input type="radio" id="q6_yes" name="q6" value="yes">
                 <label for="q6_yes">Yes</label>
                 <input type="radio" id="q6_no" name="q6" value="no">
                 <label for="q6_no">No</label>
             </div>
             <div class="question">
-                <p>7. Do you fear being abandoned or rejected?</p>
+                <p>7. Do you experience intense and inappropriate anger or difficulty controlling anger?</p>
                 <input type="radio" id="q7_yes" name="q7" value="yes">
                 <label for="q7_yes">Yes</label>
                 <input type="radio" id="q7_no" name="q7" value="no">
                 <label for="q7_no">No</label>
             </div>
             <div class="question">
-                <p>8. Do you experience severe dissociative symptoms or stress-related paranoid thoughts?</p>
+                <p>8. Do you experience transient, stress-related paranoid ideation or severe dissociative symptoms?</p>
                 <input type="radio" id="q8_yes" name="q8" value="yes">
                 <label for="q8_yes">Yes</label>
                 <input type="radio" id="q8_no" name="q8" value="no">
                 <label for="q8_no">No</label>
             </div>
-            <div class="question">
-                <p>9. Do you engage in self-harming behaviors or have suicidal thoughts?</p>
-                <input type="radio" id="q9_yes" name="q9" value="yes">
-                <label for="q9_yes">Yes</label>
-                <input type="radio" id="q9_no" name="q9" value="no">
-                <label for="q9_no">No</label>
-            </div>
             <button type="button" onclick="calculateResult()">Submit</button>
+            <div id="result"></div>
+            <div class="consultation-button">
+                <a id="consultationLink" href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Get Free Consultation</a>
+            </div>
         </form>
-        <div id="result"></div>
-        <div class="consultation-button">
-            <a href="https://menachempsychotherapygroup.com/free-consultation/" target="_blank">Free Consultation</a>
+        <div class="home-button">
+            <a href="index.html">Back to Homepage</a>
         </div>
-        <a href="index.html" class="back-button">Back to Homepage</a>
     </div>
+
     <script>
         function calculateResult() {
             let score = 0;
-            const form = document.getElementById('borderlinePersonalityQuiz');
-            const questions = form.querySelectorAll('.question');
-            questions.forEach(question => {
-                const yesInput = question.querySelector('input[value="yes"]');
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                const yesInput = question.querySelector(`#q${index + 1}_yes`);
                 if (yesInput.checked) {
                     score++;
                 }
             });
+
             const resultDiv = document.getElementById('result');
             const consultationButton = document.querySelector('.consultation-button');
-            resultDiv.style.display = 'block';
             if (score >= 5) {
-                resultDiv.innerHTML = "Based on your answers, you may have borderline personality disorder. Please seek professional help for a comprehensive diagnosis.";
+                resultDiv.textContent = "Your responses suggest that you may have Borderline Personality Disorder. Please seek professional evaluation.";
                 consultationButton.style.display = 'block';
             } else {
-                resultDiv.innerHTML = "Based on your answers, you are unlikely to have borderline personality disorder. However, if you have concerns, please consult a professional.";
+                resultDiv.textContent = "Your responses do not suggest Borderline Personality Disorder.";
                 consultationButton.style.display = 'none';
             }
+            resultDiv.style.display = 'block';
         }
     </script>
 </body>
